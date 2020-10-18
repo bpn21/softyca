@@ -38,9 +38,16 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/dotenv'
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+  },
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL || 'http://localhost:8000/'
+  },
+  privateRuntimeConfig: {
+    apiSecret: process.env.API_SECRET
   }
 }

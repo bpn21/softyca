@@ -1430,6 +1430,14 @@
     consola "^2.15.0"
     defu "^3.1.0"
 
+"@nuxtjs/dotenv@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/dotenv/-/dotenv-1.4.1.tgz#dd5abb98e22cc7ae27139d3aa606151034293128"
+  integrity sha512-DpdObsvRwC8d89I9mzz6pBg6e/PEXHazDM57DOI1mmML2ZjHfQ/DvkjlSzUL7T+TnW3b/a4Ks5wQx08DqFBmeQ==
+  dependencies:
+    consola "^2.10.1"
+    dotenv "^8.1.0"
+
 "@nuxtjs/proxy@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@nuxtjs/proxy/-/proxy-2.0.1.tgz#2469b6e316311aa8c60d348502a54bfe6d5536aa"
@@ -3845,7 +3853,7 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
-dotenv@^8.2.0:
+dotenv@^8.1.0, dotenv@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
@@ -9306,6 +9314,34 @@ tailwindcss@^1.8.10:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.9.0.tgz#19caaca94656e2d5f038fa46e754d91e152e9609"
   integrity sha512-RJJ7SRtmm1jBXzOm5It50NAX76251yW+XWISb2Y+kxgqwcCHq4RDor7elzeUChl/dIFvUMDsHb7LfiGtLs3qtg==
+  dependencies:
+    "@fullhuman/postcss-purgecss" "^2.1.2"
+    autoprefixer "^9.4.5"
+    browserslist "^4.12.0"
+    bytes "^3.0.0"
+    chalk "^3.0.0 || ^4.0.0"
+    color "^3.1.2"
+    detective "^5.2.0"
+    fs-extra "^8.0.0"
+    html-tags "^3.1.0"
+    lodash "^4.17.20"
+    node-emoji "^1.8.1"
+    normalize.css "^8.0.1"
+    object-hash "^2.0.3"
+    postcss "^7.0.11"
+    postcss-functions "^3.0.0"
+    postcss-js "^2.0.0"
+    postcss-nested "^4.1.1"
+    postcss-selector-parser "^6.0.0"
+    postcss-value-parser "^4.1.0"
+    pretty-hrtime "^1.0.3"
+    reduce-css-calc "^2.1.6"
+    resolve "^1.14.2"
+
+tailwindcss@^1.9.4:
+  version "1.9.4"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.9.4.tgz#5ae8ff84bc8234df22ba5f2c7feafb64bb14da55"
+  integrity sha512-CVeP4J1pDluBM/AF11JPku9Cx+VwQ6MbOcnlobnWVVZnq+xku8sa+XXmYzy/GvE08qD8w+OmpSdN21ZFPoVDRg==
   dependencies:
     "@fullhuman/postcss-purgecss" "^2.1.2"
     autoprefixer "^9.4.5"
