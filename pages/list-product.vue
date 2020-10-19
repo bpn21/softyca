@@ -1,30 +1,25 @@
 <template>
-  <div class="container bg-lightblue mx-auto px-6 text-white-500 " >
+  <div class="flex flex-row container bg-lightblue mx-auto px-6 text-white-500 " >
     <div>
-      <div class="flex">
+      <div class="">
       </div>
-      <h1 class="text-darkbrown  text-5xl  font-extrabold " >Welcome</h1> 
+      <h1 class="text-darkbrown  text-5xl  font-extrabold " >These are the list of products in database</h1> 
       <br>
       <br>
-    
       <div>
-        <br>
-            <nuxt-link :to="{path: '/list-product'}">
-          <span class="text-darkbrown">  List Product  |</span>
-        </nuxt-link>
-
-          <nuxt-link :to="{path: '/add-product'}">
-          <span class="text-darkbrown">  Add Product  |</span>
-        </nuxt-link>
-
-        <nuxt-link :to="{path: '/edit-product'}">
-        <button class="text-darkbrown">Edit Product |</button>
-          <span >    </span>
-        </nuxt-link>
-    
-        <nuxt-link :to="{path: '/delete-product'}">
-        <span class="text-darkbrown">Delete Product </span>
-        </nuxt-link>
+        <ul>
+          <li v-for="product in productList" :key="product.productList">
+            <div class=" flex flex-row bg-white shadow-md rounded px-8 border py-2 box-border  p-4 border-4 border-gray-400 bg-gray-200">
+           Name:  {{product.name||"not avaliable"}},
+           Size : {{product.size||"not avaliable"}},
+           Color :{{product.color||"not avaliable"}},
+           Brand :{{product.brand||"not avaliable"}},
+           Category: {{product.category||"not avaliable"}},
+            
+            </div>
+          </li>
+        </ul>
+      
       </div>
     </div>
   </div>
@@ -38,7 +33,7 @@ export default {
   },
     data(){
         return{
-            // productList : [],
+            productList : [],
         }
     },
     mounted(){
@@ -51,7 +46,6 @@ export default {
           .$get(`api/list`)
           .then((response) => {
               this.productList = response
-              console.log(response)
               debugger
           })
           .catch((error) => {
