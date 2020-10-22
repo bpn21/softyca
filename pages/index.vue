@@ -4,8 +4,6 @@
       <div class="flex">
       </div>
       <h1 class="text-darkbrown  text-5xl  font-extrabold " >Welcome</h1> 
-      <br>
-      <br>
     
       <div>
         <br>
@@ -38,7 +36,8 @@ export default {
   },
     data(){
         return{
-            // productList : [],
+            productList : [],
+            title:"welcome"
         }
     },
     mounted(){
@@ -57,8 +56,6 @@ export default {
           .catch((error) => {
               console.log(error)
           })},
-
-
     }
 }
 

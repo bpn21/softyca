@@ -1,16 +1,35 @@
-<template>
-    <section>
-        <h2>Delete Product</h2>
-        <form v-on:submit.prevent="submit">
-                  <div class="flex flex-col mb-4">
-                    <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="color">Color</label>
-                    <input v-model="product.color" placeholder="Color" class="bg-white shadow-md rounded px-8 border py-2 px-3  text-black" type="text" name="color" id="color">
-                </div>
-            <button class=" flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit">Submit</button>
+  <template>
+  <div class="bg-teal-800">
+    <div class="container flex flex-wrap bg-teal-900 rounded-lg">
+    <div class=" box-border w-6/12 p-4">
+    <div class="bg-teal-900 rounded-lg">
+    <p class="font-sans bg-red-900 rounded-lg uppercase tracking-wide font-bold text-4xl text-white "> Delete Product</p>
+        <form v-on:submit.prevent="submit" class="bg-white border shadow-lg rounded p-8">
+            <label class=" text-gray-700 text-sm font-bold " for="id">
+              ID
+            </label>
+            <input v-model="product.id" class="shadow  border rounded w-full py-2 px-3 text-gray-700 mb-3  focus:outline-none focus:shadow-outline" id="id" type="text" placeholder="ID">
+          
+          <div class="flex items-center">
+            <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              Delete
+            </button>
+          </div>
         </form>
-    </section>
+    
+  
+  <p class="text-center text-gray-500 text-xs">
+    &copy;2020 Acme Corp. All rights reserved.
+  </p>
+    </div>
+</div>
+</div>
+ 
+</div>
 </template>
 
+
+    
 <script>
 // import productForm from './../components/productForm'
 export default {
@@ -28,7 +47,7 @@ export default {
     methods:{
         submit(){
             this.$axios
-          .$delete(`api/${this.product.id}/remove/`,this.product)
+          .$delete(`api/list/${this.product.id}`,this.product)
           .then((response) => {
               this.productList = response
               console.log('what comes in response',response)

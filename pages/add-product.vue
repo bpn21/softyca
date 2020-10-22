@@ -1,39 +1,51 @@
-<template>
-    <section>
-        <form v-on:submit.prevent="submit">
-           
-            <div class="container mx-auto px-6 text-gray-500 ">
-                 <div class="flex">
-                </div>
-                <p class=" font-sans block uppercase tracking-wide font-bold text-7xl"> Add New Product</p>
-                <div class="flex flex-col mb-4">
-                    <label class="mb-2 uppercase font-bold  text-grey-darkest" for="category">Category</label>
-                    <input  v-model="product.category" placeholder="Category" class="w-2/12 bg-white shadow-md rounded-lg border py-2 px-1 text-black-darkest " type="text" name="category" id="category">
-                     <span class="text-sm text-darkmoderateorange" >
-                        Number is required !
-                    </span>
-                </div>
-                <div class="flex flex-col mb-4">
-                    <label class="mb-2 uppercase font-b old text-lg text-grey-darkest" for="name">Name</label>
-                    <input v-model="product.name" placeholder="Name" class="w-6/12 bg-white shadow-md rounded-lg border py-2 px-3  text-black" type="text" name="name" id="name">
-                </div>
-                <div class="flex flex-col mb-4">
-                    <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="size">Size</label>
-                    <input v-model="product.size" placeholder="Size" class="w-6/12 bg-white shadow-md rounded-lg border py-2 px-3  text-black" type="text" name="size" id="color">
-                </div>
-                <div class="flex flex-col mb-4">
-                    <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="brand">Brand</label>
-                    <input  v-model="product.brand" placeholder="Brand" class="w-6/12 bg-white shadow-md rounded-lg border py-2 px-3 text-black" type="text" name="brand" id="brand">
-                </div>
-                <div class="flex flex-col mb-4">
-                    <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="color">Color</label>
-                    <input v-model="product.color" placeholder="Color" class="w-6/12 bg-white shadow-md rounded-lg border py-2 px-3  text-black" type="text" name="color" id="color">
-                </div>
-            <button class=" flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit">Submit</button>
-            </div>
+  <template>
+  <div class="bg-teal-800">
+
+  <div class="container">
+    <div class="flex flex-wrap bg-teal-900 rounded-lg">
+    <div class="box-border w-6/12 p-4">
+    <div class="bg-teal-900 rounded-lg">
+    <p class="font-sans bg-teal-800 rounded-lg uppercase tracking-wide font-bold text-4xl text-white "> Add New Product</p>
+        <form v-on:submit.prevent="submit" class="bg-white border shadow-lg rounded p-8">
+            <label class="" for="name">Name</label>
+            <input v-model="product.name" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name">
+      
+            <label class=" text-gray-700 text-sm font-bold " for="size">
+              Size
+            </label>
+            <input v-model="product.size" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="size" type="text" placeholder="Size">
+
+            <label class=" text-gray-700 text-sm font-bold " for="color">
+              Color
+            </label>
+            <input v-model="product.color" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="color" type="text" placeholder="Color">
+          
+            <label class=" text-gray-700 text-sm font-bold " for="brand">
+              Brand
+            </label>
+            <input v-model="product.brand" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="brand" type="text" placeholder="Brand">
+
+            <label class=" text-gray-700 text-sm font-bold " for="category">
+              category
+            </label>
+            <input v-model="product.category" class="shadow  border rounded w-full py-2 px-3 text-gray-700 mb-3  focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Category">
+          
+          <div class="flex items-center">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              Add Product
+            </button>
+          </div>
         </form>
-    </section>
+  <p class="text-center text-gray-500 text-xs">
+    &copy;2020 Acme Corp. All rights reserved.
+  </p>
+    </div>
+</div>
+</div>
+</div>    
+</div>
 </template>
+
 
 <script>
 // import productForm from './../components/productForm'
@@ -56,7 +68,7 @@ export default {
     methods:{
         submit(){
             this.$axios
-          .$post(`api/new/`,this.product)
+          .$get(`api/list/`,this.product)
           .then((response) => {
               this.productList = response
               console.log('what comes in response',response)

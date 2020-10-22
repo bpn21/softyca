@@ -10,10 +10,10 @@ module.exports = {
     },
     container: {
       padding: {
-        default: '1rem',
+        default: 'rem',
         sm: '2rem',
+        xl: '5rem',
         lg: '4rem',
-        xl: '5rem'
       }
     },
     fontSize: {
@@ -73,7 +73,10 @@ module.exports = {
     }
   },
   variants: {
-    visibility: ['responsive', 'hover']
+    visibility: ['responsive', 'hover'],
+    display: ['responsive', 'group-hover', 'group-focus'],
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/custom-forms'),
+  ]
 }
