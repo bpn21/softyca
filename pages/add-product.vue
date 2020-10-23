@@ -68,7 +68,7 @@ export default {
     methods:{
         submit(){
             this.$axios
-          .$get(`api/list/`,this.product)
+          .$post(`api/list/`,this.product)
           .then((response) => {
               this.productList = response
               console.log('what comes in response',response)

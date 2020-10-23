@@ -1,4 +1,4 @@
-<template>
+<template>    
     <div class="container">
         <div class="bg-teal-900">
                 <div class="flex flex-wrap bg-teal-900 rounded-lg">
@@ -49,7 +49,7 @@
 
 export default {
   props: {
- data: {
+  data: {
       type: Object,
       default () {
         return {}

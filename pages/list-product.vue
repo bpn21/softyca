@@ -7,7 +7,7 @@
         </nuxt-link>        
         <h1 class="mx-6 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-teal-700 my-5" >These are the list of Products in Database.</h1> 
           <div class=" py-8 px-3  my-5 mx-10 font-sans shadow-2xl w-3/12 bg-white block shadow-xl text-black rounded-lg border-double bg-teal-800 text-white" v-for="(product,id) in list" :key="`${id}-ec`">
-           <div class="my-4 rounded-lg shadow-lg border bg-white capitalize text-black ">
+            <div class="my-4 rounded-lg shadow-lg border bg-white capitalize text-black ">
               Detail of {{product.name}}
             </div>
             Name:  {{product.name||"not avaliable"}},<br>
@@ -33,19 +33,15 @@
 
           <div v-if=showDeleteModal> 
             <ConformDelete
-            :product-id=id
-            :product-name=name
+            :id=id
+            :data=data
             @delete=ConformDelete
             />
           </div>
           <div v-if=showEditModal>
             <Edit
-            :product-id=id
-            :product-name=name
-            :product-size=size
-            :product-color=color
-            :product-brand=brand
-            :product-category=category
+            :id=id
+            :data=data
             @edit=Edit
             />
 
@@ -57,39 +53,49 @@
 
 
 <script>
+import Vue from 'vue'
+
+import Toaster from 'v-toaster'
+
+import 'v-toaster/dist/v-toaster.css'
+
+Vue.use(Toaster, {timeout: 5000})
+
 import ConformDelete from '~/components/ConformDelete'
 import Edit from '~/components/Edit'
 
 export default {
-  props:[],
+  props:[name],
   components:{
-   ConformDelete,
-   Edit
+    ConformDelete,
+    Edit
     },
-    data(){
-      return{
+  
+  data(){
+    return{
+      showDeleteModal: false,
+      showEditModal : false,
+      list : [],
+      id: Number,
+      name: '',
+      data:{
+        name :'',
+        size:'',
+        color:'',
+        brand:'',
+        color:'',
+        category:'',
         showDeleteModal: false,
         showEditModal : false,
-        list : [],
-        id: Number,
-        data:{
-          id: null,
-          name : '',
-          size:'',
-          color:'',
-          brand:'',
-          color:'',
-          category:'',
-          showDeleteModal: false,
-          showEditModal : false,
-        }
-        }
+      }
+      }
 
-    },
-    mounted(){
+  },
+  mounted(){
         this.callThisFunction()
     },
-    methods: 
+    
+  methods: 
     {
       callThisFunction() {
         this.$axios
@@ -100,21 +106,27 @@ export default {
           .catch((error) => {
             console.log(error)
           })},
+          
           toggleDeleteModel(product){
+            debugger
           this.id = product.id
-          this.name = product.name
+          this.data.name =product.name
           this.showDeleteModal = !this.showDeleteModal
+          debugger
           },
 
           toggleEditModel(product){
             this.id = product.id
+            this.name = product.name
             this.showEditModal = !this.showEditModal
           },
 
           ConformDelete(object){
-            this.$axios.$delete(`api/list/${object.id}`)
+            debugger
+            this.$axios.$delete(`api/list/${this.id}`)
           .then((response) => {
-              this.showDeleteModal = false
+            this.showDeleteModal = false
+            this.$toaster.success(`${this.name} has been deleted`)
             
           })
           .catch((error) => {
@@ -122,9 +134,12 @@ export default {
           })},
           
           Edit(object){
+            debugger
               this.$axios.$patch(`api/list/${this.id}/`,object.data)
             .then((response) => {
                 this.list = response
+            this.$toaster.success(`${this.name} has been Edited`)
+
             })
             .catch((error) => {
                 console.log(error)

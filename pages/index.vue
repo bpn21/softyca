@@ -40,23 +40,9 @@ export default {
             title:"welcome"
         }
     },
-    mounted(){
-        this.callThisFunction()
-    },
+    mounted(){},
     methods: 
-    {
-      callThisFunction() {
-        this.$axios
-          .$get(`api/list`)
-          .then((response) => {
-              this.productList = response
-              console.log(response)
-              debugger
-          })
-          .catch((error) => {
-              console.log(error)
-          })},
-    }
+    {}
 }
 
 </script>
