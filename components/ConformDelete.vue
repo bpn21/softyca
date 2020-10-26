@@ -4,6 +4,7 @@
   <button @click=ConformDelete() class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
     Delete
   </button>
+
   </div>
 </template>
 
@@ -35,8 +36,8 @@ export default {
   methods: {
       ConformDelete(){
           debugger
-          this.$emit('delete', { index: this.data})
-      }
+          this.$emit('delete', { data: this.data})
+      },
   }
 }
 </script>

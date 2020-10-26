@@ -21,7 +21,11 @@
         </nuxt-link>
     
         <nuxt-link :to="{path: '/delete-product'}">
-        <span class="text-darkbrown">Delete Product </span>
+        <span class="text-darkbrown">Delete Product |</span>
+        </nuxt-link>
+
+        <nuxt-link :to="{path : '/list-category'}">
+        <span class="text-darkbrown">List Category</span>
         </nuxt-link>
       </div>
     </div>
@@ -92,20 +96,3 @@ export default {
   padding-top: 15px;
 }
 </style>
-
-
-this.$axios.$get('/user/12345', {
-  cancelToken: source.token
-}).catch(error => {
-  if (this.$axios.isCancel(error)) {
-    console.log('Request canceled', error)
-  } else {
-    // handle error
-  }
-})
-
-this.$axios.$post('/user/12345', {
-  name: 'new name'
-}, {
-  cancelToken: source.token
-})
