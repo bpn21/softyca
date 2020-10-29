@@ -56,6 +56,7 @@ export default {
   name: 'Add',
   components: {
      'dropdown': dropdown,
+ 
   },
     data(){
         return{
