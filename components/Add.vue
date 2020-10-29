@@ -5,8 +5,8 @@
     <div class="box-border w-4/5 p-4">
     <div class="bg-teal-900 rounded-lg">
     <p class="font-sans bg-teal-800 rounded-lg uppercase tracking-wide font-bold text-4xl text-white "> Add New Product</p>
-          <dropdown class="bg-white rounded-lg" :options="categoryList" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
-           
+          <dropdown class="bg-white rounded-lg" :options="categoryList" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown> <br>
+          
             <label class="text-white text-sm font-bold " for="name">Name</label>
             <input v-model="data.name" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name">
       

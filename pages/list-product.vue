@@ -81,6 +81,7 @@
                 @cproduct = CategoryProduct
                 />
   </div>
+  
 </div>
 </template>
 
@@ -187,6 +188,7 @@ export default {
       .then((response) => {
         this.showDeleteModal = false
         this.$toaster.success(`${this.data.name} has been deleted`)
+        this.callThisFunction()
         
       })
       .catch((error) => {
@@ -194,12 +196,28 @@ export default {
       })},
       
       Edit(object){
+          if(object.data.category==""){
+        this.$toaster.error(`category is required`)
+        }
+        if(object.data.name==""){
+        this.$toaster.error(`name is required`)
+        }
+        if(object.data.size==""){
+        this.$toaster.error(`size is required`)
+        }
+         if(object.data.color==""){
+        this.$toaster.error(`color is required`)
+        }
+         if(object.data.brand==""){
+        this.$toaster.error(`brand is required`)
+        }
         debugger
           this.$axios.$patch(`api/list/${this.id}/`,object.data)
         .then((response) => {
             this.list = response
         this.$toaster.success(`${this.name} has been Edited`)
         debugger
+        this.callThisFunction()
 
         })
         .catch((error) => {
@@ -208,14 +226,27 @@ export default {
         
       Add(object){
         debugger
+        if(object.data.category==""){
+        this.$toaster.error(`category is required`)
+        }
+        if(object.data.name==""){
+        this.$toaster.error(`name is required`)
+        }
+        if(object.data.size==""){
+        this.$toaster.error(`size is required`)
+        }
+         if(object.data.color==""){
+        this.$toaster.error(`color is required`)
+        }
+         if(object.data.brand==""){
+        this.$toaster.error(`brand is required`)
+        }
         this.$axios
       .$post(`api/list/`,object.data)
       .then((response) => {
-          this.list = response
-          console.log('what comes in response',response)
+        debugger
           this.$toaster.success(`${response.name} has been added`)
-
-          debugger
+      this.callThisFunction()
       })
       .catch((error) => {
           console.log(error)
