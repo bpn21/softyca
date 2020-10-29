@@ -6,14 +6,16 @@
           <h1 class="mx-6 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-teal-700 my-5" >These are the list of Products in Database.</h1> 
           
           <div class=" py-8 px-3  my-5 mx-6 font-sans shadow-2xl w-3/12 bg-white block shadow-xl text-black rounded-lg border-double bg-teal-800 text-white" v-for="(product,id) in list" :key="`${id}-ec`">
-            <div class=" my-4 rounded-lg shadow-lg border bg-white capitalize text-black ">
+            <div class=" my-4 p-3 rounded-lg shadow-lg border bg-white capitalize text-black ">
               Detail of {{product.name}}
+            </div>
+            <div class="uppercase bg-green-700 text-white-500 rounded-lg ">
+            Category: {{product.category_name ||"not avaliable"}},<br>
             </div>
             Name:  {{product.name||"not avaliable"}},<br>
             Size : {{product.size||"not avaliable"}}, <br>
             Color :{{product.color||"not avaliable"}},<br>
             Brand :{{product.brand||"not avaliable"}},<br>
-            Category: {{product.category_name ||"not avaliable"}},<br>
             Id: {{product.id ||"not avaliable"}}
             <div class="flex">
 
@@ -43,6 +45,7 @@
 
           <div v-if=showEditModal>
             <Edit
+            :categoryList=categoryList
             :id=id
             :data=data
             @edit=Edit
@@ -51,6 +54,7 @@
 
           <div v-if=showAddModal>
               <Add
+              :categoryList=categoryList
               :data=data
               @add=Add
             />
@@ -139,81 +143,88 @@ export default {
           })},
 
       callCategoryFucntion(){
-          this.$axios
-            .$get('api/category')
-            .then((response)=>{
-              this.categoryList = response
-                debugger
-            })
-            .catch((error)=>{
-                console.log('error : ',error)
-            })
+      this.$axios
+        .$get('api/category')
+        .then((response)=>{
+          this.categoryList = response
+            debugger
+        })
+        .catch((error)=>{
+            console.log('error : ',error)
+        })
+  },
+      
+      toggleDeleteModal(product){
+      this.id = product.id
+      this.data.name =product.name
+      this.showDeleteModal = !this.showDeleteModal
       },
-          
-          toggleDeleteModal(product){
-          this.id = product.id
-          this.data.name =product.name
-          this.showDeleteModal = !this.showDeleteModal
-          },
 
-          toggleEditModal(product){
-            // Edit garda Pervious data tha hos bhaneyra rakheyko
-            this.id = product.id
-            this.data.name = product.name
-            this.data.size = product.size
-            this.data.color = product.color
-            this.data.brand = product.brand
-            this.data.category_name = product.category_name
-            this.showEditModal = !this.showEditModal
-          },
-          
-          toggleAddModal(){
-          this.showAddModal = !this.showAddModal
-          },
+      toggleEditModal(product){
+        // Edit garda Pervious data tha hos bhaneyra rakheyko
+        this.id = product.id
+        this.name = product.name
+        this.data.name = product.name
+        this.data.size = product.size
+        this.data.color = product.color
+        this.data.brand = product.brand
+        this.data.category_name = product.category_name
+        this.showEditModal = !this.showEditModal
+      },
+      
+      toggleAddModal(){
+      this.data.name = ''
+      this.data.size = ''
+      this.data.color = ''
+      this.data.brand = ''
+      this.data.category_name = ''
+      this.showAddModal = !this.showAddModal
+      },
 
-          ConformDelete(object){
-            
-            this.$axios.$delete(`api/list/${this.id}`)
-          .then((response) => {
-            this.showDeleteModal = false
-            this.$toaster.success(`${this.data.name} has been deleted`)
-            
-          })
-          .catch((error) => {
-              console.log(error)
-          })},
-          
-          Edit(object){
-            debugger
-              this.$axios.$patch(`api/list/${this.id}/`,object.data)
-            .then((response) => {
-                this.list = response
-            this.$toaster.success(`${this.name} has been Edited`)
+      ConformDelete(object){
+        
+        this.$axios.$delete(`api/list/${this.id}`)
+      .then((response) => {
+        this.showDeleteModal = false
+        this.$toaster.success(`${this.data.name} has been deleted`)
+        
+      })
+      .catch((error) => {
+          console.log(error)
+      })},
+      
+      Edit(object){
+        debugger
+          this.$axios.$patch(`api/list/${this.id}/`,object.data)
+        .then((response) => {
+            this.list = response
+        this.$toaster.success(`${this.name} has been Edited`)
+        debugger
 
-            })
-            .catch((error) => {
-                console.log(error)
-            })},
-            
-          Add(object){
-            debugger
-            this.$axios
-          .$post(`api/list/`,object.data)
-          .then((response) => {
-              this.list = response
-              console.log('what comes in response',response)
-              this.$toaster.success(`${response.name} has been added`)
+        })
+        .catch((error) => {
+            console.log(error)
+        })},
+        
+      Add(object){
+        debugger
+        this.$axios
+      .$post(`api/list/`,object.data)
+      .then((response) => {
+          this.list = response
+          console.log('what comes in response',response)
+          this.$toaster.success(`${response.name} has been added`)
 
-              debugger
-          })
-          .catch((error) => {
-              console.log(error)
-          })},
+          debugger
+      })
+      .catch((error) => {
+          console.log(error)
+      })},
 
-          toggleCategoryProduct(){
-            debugger
-            this.showCategoryProduct = true
-          },
+      toggleCategoryProduct(){
+        debugger
+        this.showCategoryProduct = true
+      },
         
   },
 }

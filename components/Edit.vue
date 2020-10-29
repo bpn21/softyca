@@ -6,30 +6,26 @@
     <div class="bg-teal-900 rounded-lg">
     <p class="font-sans bg-teal-800 rounded-lg uppercase tracking-wide font-bold text-4xl text-white "> Edit Product</p>
 
-            <label class="text-gray-700" for="name">Name</label>
+          <dropdown class="bg-white rounded-lg" :options="categoryList" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
+
+            <label class="text-white" for="name">Name</label>
             <input v-model="data.name" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="">
           
-            <label class=" text-gray-700 text-sm font-bold " for="size">
+            <label class=" text-white text-sm font-bold " for="size">
               Size
             </label>
             <input v-model="data.size" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="size" type="text" placeholder="">
           
-            <label class=" text-gray-700 text-sm font-bold " for="color">
+            <label class=" text-white text-sm font-bold " for="color">
               Color
             </label>
             <input v-model="data.color" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="color" type="text" placeholder="Color">
           
-            <label class=" text-gray-700 text-sm font-bold " for="brand">
+            <label class=" text-white text-sm font-bold " for="brand">
               Brand
             </label>
             <input v-model="data.brand" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="brand" type="text" placeholder="Brand">
 
-            <label class=" text-gray-700 text-sm font-bold " for="category">
-              category
-            </label>
-            <input v-model="data.category_name" class="shadow  border rounded w-full py-2 px-3 text-gray-700 mb-3  focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Category">
-          
-          <div class="flex items-center">
         </div>
     
    <button @click=Edit() class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
@@ -42,25 +38,31 @@
 </div>
 </div>
         </div>
-    </div>
+ 
 </template>
 
 <script>
-
+import dropdown from 'vue-dropdowns';
 export default {
   props: {
+  categoryList:Array,
   data: {
       type: Object,
       default () {
         return {}
-      }
-    }
+      },
+    },
   },
   name: 'Edit',
-  components: {},
+  components: {
+      'dropdown': dropdown,
+  },
   data () {
     return {
-        postData:{}
+        postData:{},
+        object: {
+            name: 'Category',
+          }
     }
   },
  mounted(){
@@ -69,7 +71,13 @@ export default {
   methods: {
       Edit(){
           this.$emit('edit', {data : this.postData})
-      }
-  }
+      },
+    methodToRunOnSelect(payload) {
+            this.object = payload;
+            this.data.category=this.object.id
+            this.data.category_name = this.object.name
+            debugger
+          }
+  },
 }
 </script>
