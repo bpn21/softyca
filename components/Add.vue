@@ -25,9 +25,12 @@
             </label>
             <input v-model="data.brand" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="brand" type="text" placeholder="Brand">                 
 
-          <div class="flex items-center">
-            <button @click=Add() class="my-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+          <div class="bg-white my-4 rounded-lg p-2 flex items-center">
+            <button @click=Add() class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
               Add Product
+            </button>
+            <button @click=cancel() class="bg-teal-900 hover:bg-teal-800 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              Cancel
             </button>
           </div>
   <p class="text-center text-gray-500 text-xs">
@@ -79,7 +82,11 @@ export default {
             this.data.category=this.object.id
             this.data.category_name = this.object.name
             debugger
-          }
+          },
+          cancel(){
+          debugger
+          this.$emit('cancel', { data: this.data})
+      },
        
         }
     }

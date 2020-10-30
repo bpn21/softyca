@@ -31,6 +31,9 @@
    <button @click=Edit() class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
       Edit
     </button>
+    <button @click=cancel() class="bg-white hover:bg-teal-900 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+    Cancel
+  </button>
   <p class="text-center text-gray-500 text-xs">
     &copy;2020 Acme Corp. All rights reserved.
   </p>
@@ -67,10 +70,14 @@ export default {
   },
  mounted(){
      this.postData = this.data
+     this.data.category
  },
   methods: {
       Edit(){
           this.$emit('edit', {data : this.postData})
+      },
+      cancel(){
+          this.$emit('cancel', {data : this.postData})
       },
     methodToRunOnSelect(payload) {
             this.object = payload;

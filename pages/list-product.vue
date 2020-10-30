@@ -34,15 +34,17 @@
                     :id=id
                     :data=data
                     @delete=ConformDelete
+                    @cancel=cancel
                     />
         </Modal>
 
-        <Modal v-model="showEditModal" title="Edit Product">
+        <Modal class="z-30" v-model="showEditModal" title="Edit Product">
           <Edit
                     :categoryList=categoryList
                     :id=id
                     :data=data
                     @edit=Edit
+                    @cancel=cancel
                     />
         </Modal>
          
@@ -51,6 +53,7 @@
               :categoryList=categoryList
               :data=data
               @add=Add
+              @cancel=cancel
             />
         </Modal>
 
@@ -171,6 +174,7 @@ export default {
         this.data.color = product.color
         this.data.brand = product.brand
         this.data.category_name = product.category_name
+        this.category = product.category
         this.showEditModal = !this.showEditModal
       },
       
@@ -197,6 +201,11 @@ export default {
       .catch((error) => {
           console.log(error)
       })},
+      cancel(){
+        this.showDeleteModal= false
+        this.showEditModal=false
+        this.showAddModal=false
+      },
       
       Edit(object){
           if(object.data.category==""){
