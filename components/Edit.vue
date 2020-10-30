@@ -49,6 +49,8 @@ import dropdown from 'vue-dropdowns';
 export default {
   props: {
   categoryList:Array,
+  category_name:String,
+  category:Number,
   data: {
       type: Object,
       default () {
@@ -82,7 +84,7 @@ export default {
       },
     methodToRunOnSelect(payload) {
             this.object = payload;
-            this.data.category=this.object.id || payload.category
+            this.data.category=this.object.id || this.category
             this.data.category_name = this.object.name
             debugger
           }

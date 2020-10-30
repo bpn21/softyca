@@ -41,6 +41,8 @@
         <Modal class="z-30" v-model="showEditModal" title="Edit Product">
           <Edit
                     :categoryList=categoryList
+                    :category_name=data.category_name
+                    :category=data.category
                     :data=data
                     @edit=Edit
                     @cancel=cancel
@@ -174,6 +176,7 @@ export default {
         this.data.brand = product.brand
         this.data.category_name = product.category_name
         this.category = product.category
+        this.data.category = product.category
         this.showEditModal = !this.showEditModal
         debugger
       },
@@ -183,6 +186,7 @@ export default {
       this.data.size = ''
       this.data.color = ''
       this.data.brand = ''
+      this.data.category=''
       this.data.category_name = ''
       this.showAddModal = !this.showAddModal
       },
@@ -223,6 +227,8 @@ export default {
          if(object.data.brand==""){
         this.$toaster.error(`brand is required`)
         }
+       
+
         debugger
           this.$axios.$patch(`api/list/${this.id}/`,object.data)
         .then((response) => {
