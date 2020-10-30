@@ -1,21 +1,20 @@
 <template>
 <div class="bg-teal-800">
   <div class="container bg-teal-900" >
-      <div class="place-items-end flex flex-wrap ">
+      <div class="flex flex-wrap ">
 
         <h1 class="mx-6 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-teal-700 my-5" >These are the list of Products in Database.</h1> 
         
         <div class=" py-8 px-3  my-5 mx-6 font-sans shadow-2xl w-3/12 bg-white block shadow-xl text-black rounded-lg border-double bg-teal-800 text-white" v-for="(product,id) in list" :key="`${id}-ec`">
-           <div class="flex">
+             <div class="flex">
             <button @click="toggleEditModal(product)">
-              <svg class="stroke-2  w-10 h-6 shadow-lg hover:bg-teal-900 rounded-lg"  fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              <svg class="stroke-2  w-10 h-6 hover:bg-teal-900 rounded-lg"  fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
 
             <button @click="toggleDeleteModal(product)">
-              <svg class="w-10 h-6 text-teal-100 shadow-lg hover:bg-red-700 rounded-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-1 12a2 2 0 01-2 2H8a2 2 0 01-2-2L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              <svg class="w-10 h-6 text-teal-100 hover:bg-red-700 rounded-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-1 12a2 2 0 01-2 2H8a2 2 0 01-2-2L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
             </button>
           </div>
-          
           <div class=" my-4 p-3 rounded-lg shadow-lg border bg-white capitalize text-black ">
             Detail of {{product.name}}
           </div>
@@ -27,7 +26,7 @@
           Color :{{product.color||"not avaliable"}},<br>
           Brand :{{product.brand||"not avaliable"}},<br>
           Id: {{product.id ||"not avaliable"}}
-         
+       
         </div>
 
         <Modal v-model="showDeleteModal" title="Delete Product" >
@@ -53,11 +52,10 @@
               :data=data
               @add=Add
             />
- 
         </Modal>
 
         <button class="" @click="toggleAddModal()">
-          <svg class="fixed w-24 h-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 
+          <svg class=" w-24 h-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 
         </button>         
 
         <h1 class="mx-6 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-green-700 my-5" >These are the list of category .</h1> 
@@ -66,6 +64,11 @@
             list of category
           </button>
         </div>    
+            
+        <button>
+            <svg class="w-24 h-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 
+        </button> 
+
       </div>
   </div>
   <div v-if=showCategoryProduct>
@@ -135,6 +138,7 @@ export default {
           .$get(`api/list`)
           .then((response) => {
               this.list = response
+              debugger
           })
           .catch((error) => {
             console.log(error)
@@ -184,8 +188,10 @@ export default {
         this.$axios.$delete(`api/list/${this.id}`)
       .then((response) => {
         this.showDeleteModal = false
+         const index = this.list.findIndex(item => item.id === response.id)
+          console.log("what comes in index",index)
+          this.list.splice(index, 1)
         this.$toaster.success(`${this.data.name} has been deleted`)
-        this.callThisFunction()
         
       })
       .catch((error) => {
@@ -211,10 +217,13 @@ export default {
         debugger
           this.$axios.$patch(`api/list/${this.id}/`,object.data)
         .then((response) => {
-            this.list = response
+          this.showEditModal=false
+          const index = this.list.findIndex(item => item.id === response.id)
+          console.log("what comes in index",index)
+          this.list.splice(index, 1,response)
         this.$toaster.success(`${this.name} has been Edited`)
+        console.log('what comes in list',this.list)
         debugger
-        this.callThisFunction()
 
         })
         .catch((error) => {
@@ -242,8 +251,11 @@ export default {
       .$post(`api/list/`,object.data)
       .then((response) => {
         debugger
+        this.showAddModal=false
+          const index = this.list.findIndex(item => item.id === response.id)
+          console.log("what comes in index",index)
+          this.list.push(response)
           this.$toaster.success(`${response.name} has been added`)
-      this.callThisFunction()
       })
       .catch((error) => {
           console.log(error)
