@@ -41,7 +41,6 @@
         <Modal class="z-30" v-model="showEditModal" title="Edit Product">
           <Edit
                     :categoryList=categoryList
-                    :id=id
                     :data=data
                     @edit=Edit
                     @cancel=cancel
@@ -176,6 +175,7 @@ export default {
         this.data.category_name = product.category_name
         this.category = product.category
         this.showEditModal = !this.showEditModal
+        debugger
       },
       
       toggleAddModal(){

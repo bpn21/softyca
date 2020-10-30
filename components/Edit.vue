@@ -69,8 +69,9 @@ export default {
     }
   },
  mounted(){
-     this.postData = this.data
-     this.data.category
+   this.postData = this.data
+    this.methodToRunOnSelect(this.data)
+    debugger
  },
   methods: {
       Edit(){
@@ -81,7 +82,7 @@ export default {
       },
     methodToRunOnSelect(payload) {
             this.object = payload;
-            this.data.category=this.object.id
+            this.data.category=this.object.id || payload.category
             this.data.category_name = this.object.name
             debugger
           }
