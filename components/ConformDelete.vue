@@ -1,13 +1,28 @@
 <template>
-  <div class="bg-white w-4/5 rounded-lg text-black p-1">
+<div class="flex">
+<div class="modal box_size ">
+    <div  class="flex modal">
+        <button 
+            class="mx-2"
+            id='x'
+            type="button"
+            @click="cancel"
+            style="text-align:end"
+        >
+            x
+        </button>
+    </div>
+  <div class=" w-4/5 text-black p-1" id="x">
   <span >Are you sure you want to delete {{data.name}}?</span><br>
-  <button @click=ConformDelete() class="bg-white hover:bg-red-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+  <button @click=ConformDelete() class="bg-white hover:bg-red-700 text-black rounded-lg font-bold py-2 px-4  " type="submit">
     Delete
   </button>
-<button @click=cancel() class="bg-white hover:bg-teal-900 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+<button @click=cancel() class="bg-white hover:bg-teal-900 text-black font-bold rounded-lg py-2 px-4  " type="submit">
     Cancel
   </button>
   </div>
+</div>
+</div>
 </template>
 
 
@@ -47,3 +62,17 @@ export default {
   }
 }
 </script>
+
+<style>
+#x {
+  text-align: end;
+}
+
+.box_size {
+  text-align: center;
+  font: icon;
+  min-width: 700px;
+  
+}
+
+</style>

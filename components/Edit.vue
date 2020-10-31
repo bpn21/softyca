@@ -14,7 +14,7 @@
     <div class="flex flex-wrap bg-teal-900 " style="flex-direction: column">
   
     <div class="flex mx-32 bg-teal-900 rounded-lg" style="flex-direction: column">
-    <p class="p-4 font-sans bg-teal-800 rounded-lg uppercase tracking-wide font-bold text-4xl text-white w-64 box_size"> Edit Product</p>
+    <p class="flex p-4 font-sans bg-teal-800 rounded-lg uppercase tracking-wide font-bold text-4xl text-white w-64 box_size"> Edit Product</p>
 
           <dropdown class="flex bg-white rounded-lg" style="text-align: justify" :options="categoryList" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
 
@@ -37,7 +37,7 @@
             <input v-model="data.brand" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="brand" type="text" placeholder="Brand">
 
         </div>
-    <div class="flex my-4 mx-4 p-4" style="float: right">
+    <div class="flex my-4 mx-4 p-4">
    <button @click=Edit() class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
       Edit
     </button>

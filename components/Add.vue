@@ -36,11 +36,11 @@
             </label>
             <input v-model="data.brand" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="brand" type="text" placeholder="Brand">                 
 
-          <div class="bg-white my-4 rounded-lg p-2 flex items-center">
+          <div class="my-4 rounded-lg p-2 flex items-center">
             <button @click=Add() class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
               Add Product
             </button>
-            <button @click=cancel() class="flex bg-teal-900 hover:bg-teal-800 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button @click=cancel() class="mx-4 bg-white hover:bg-teal-900 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
               Cancel
             </button>
           </div>

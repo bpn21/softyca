@@ -28,16 +28,16 @@
        
         </div>
 
-        <Modal v-model="showDeleteModal" title="Delete Product" >
+        <div v-if="showDeleteModal">
                     <ConformDelete
                     :id=id
                     :data=data
                     @delete=ConformDelete
                     @cancel=cancel
                     />
-        </Modal>
+        </div>
 
-        <div class="" v-if="showEditModal">
+        <div v-if="showEditModal">
           <Edit
                     :categoryList=categoryList
                     :category_name=data.category_name
@@ -86,9 +86,6 @@
 </template>
 
 <script>
-import VueModal from '@kouts/vue-modal';
-import '@kouts/vue-modal/dist/vue-modal.css';
-Vue.component('Modal', VueModal);
 import Vue from 'vue'
 import Toaster from 'v-toaster'
 import 'v-toaster/dist/v-toaster.css'
@@ -104,7 +101,6 @@ export default {
     ConformDelete,
     Edit,
     categoryProduct,
-    'Modal': VueModal
     },
   
   data(){
