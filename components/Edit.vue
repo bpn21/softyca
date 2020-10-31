@@ -1,47 +1,61 @@
-<template>    
-    <div class="">
-        <div class="bg-teal-900">
-            <div class="flex flex-wrap bg-teal-900 rounded-lg">
-    <div class="box-border w-4/5 p-4">
-    <div class="bg-teal-900 rounded-lg">
-    <p class="font-sans bg-teal-800 rounded-lg uppercase tracking-wide font-bold text-4xl text-white "> Edit Product</p>
+<template> 
+    <div class="flex modal-backdrop">
+      <div  class="flex modal">
+        <button 
+            class="mx-2 text-red-500"
+            id='x'
+            type="button"
+            @click="cancel"
+            style="text-align:end"
+        >
+            x
+        </button>
+    <div class="flex">
+    <div class="flex flex-wrap bg-teal-900 " style="flex-direction: column">
+  
+    <div class="flex mx-32 bg-teal-900 rounded-lg" style="flex-direction: column">
+    <p class="p-4 font-sans bg-teal-800 rounded-lg uppercase tracking-wide font-bold text-4xl text-white w-64 box_size"> Edit Product</p>
 
-          <dropdown class="bg-white rounded-lg" :options="categoryList" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
+          <dropdown class="flex bg-white rounded-lg" style="text-align: justify" :options="categoryList" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown>
 
-            <label class="text-white" for="name">Name</label>
+            <label class="flex text-white" for="name">Name</label>
             <input v-model="data.name" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="">
           
-            <label class=" text-white text-sm font-bold " for="size">
+            <label class="flex text-white text-sm font-bold " for="size">
               Size
             </label>
             <input v-model="data.size" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="size" type="text" placeholder="">
           
-            <label class=" text-white text-sm font-bold " for="color">
+            <label class="flex text-white text-sm font-bold " for="color">
               Color
             </label>
             <input v-model="data.color" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="color" type="text" placeholder="Color">
           
-            <label class=" text-white text-sm font-bold " for="brand">
+            <label class="flex text-white text-sm font-bold " for="brand">
               Brand
             </label>
             <input v-model="data.brand" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="brand" type="text" placeholder="Brand">
 
         </div>
-    
+    <div class="flex my-4 mx-4 p-4" style="float: right">
    <button @click=Edit() class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
       Edit
     </button>
-    <button @click=cancel() class="bg-white hover:bg-teal-900 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+    <button @click="$emit('cancel')" class="mx-4 bg-white hover:bg-teal-900 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
     Cancel
   </button>
+    </div>
+      
+
   <p class="text-center text-gray-500 text-xs">
     &copy;2020 Acme Corp. All rights reserved.
   </p>
     </div>
 </div>
-</div>
+
         </div>
- 
+  
+      </div>
 </template>
 
 <script>
@@ -91,3 +105,16 @@ export default {
   },
 }
 </script>
+
+<style>
+#x {
+  text-align: end;
+}
+
+.box_size {
+  text-align: center;
+  font: icon;
+  min-width: 700px;
+}
+
+</style>

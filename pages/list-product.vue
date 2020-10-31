@@ -2,7 +2,6 @@
 <div class="bg-teal-800">
   <div class="container bg-teal-900" >
       <div class="flex flex-wrap ">
-
         <h1 class="mx-6 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-teal-700 my-5" style="min-width: 932px;min-height: 154px;">Products in Database.</h1> 
         
         <div class="flex py-8 px-3  my-5 mx-6 font-sans shadow-2xl w-3/12 bg-white block shadow-xl text-black rounded-lg border-double bg-teal-800 text-white example-bipin" style="" v-for="(product,id) in list" :key="`${id}-ec`">
@@ -38,7 +37,7 @@
                     />
         </Modal>
 
-        <Modal class="z-30" v-model="showEditModal" title="Edit Product">
+        <div class="" v-if="showEditModal">
           <Edit
                     :categoryList=categoryList
                     :category_name=data.category_name
@@ -46,17 +45,18 @@
                     :data=data
                     @edit=Edit
                     @cancel=cancel
+                    
                     />
-        </Modal>
+        </div>
          
-        <Modal v-model="showAddModal" title="Add Product">
+        <div v-if="showAddModal">
               <Add
               :categoryList=categoryList
               :data=data
               @add=Add
               @cancel=cancel
             />
-        </Modal>
+        </div>
 
         <button class="" @click="toggleAddModal()">
           <svg class=" w-24 h-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 
@@ -97,6 +97,7 @@ import ConformDelete from '~/components/ConformDelete'
 import Edit from '~/components/Edit'
 import Add from '~/components/Add'
 import categoryProduct from './../components/categoryProduct'
+import rough from '~/components/rough'
 
 export default {
   components:{
@@ -346,4 +347,5 @@ export default {
 #bipin_g {
   text-align: initial;
 }
+
 </style>
