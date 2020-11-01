@@ -1,6 +1,6 @@
 <template> 
     <div class="flex modal-backdrop">
-      <div  class="flex modal">
+      <div  class="flex modal rounded-lg">
         <button 
             class="mx-2 text-red-500"
             id='x'
@@ -37,11 +37,11 @@
             <input v-model="data.brand" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="brand" type="text" placeholder="Brand">
 
         </div>
-    <div class="flex my-4 mx-4 p-4">
-   <button @click=Edit() class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+    <div class="flex my-2 mx-32 p-4">
+   <button @click=Edit() class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
       Edit
     </button>
-    <button @click="$emit('cancel')" class="mx-4 bg-white hover:bg-teal-900 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+    <button @click="$emit('cancel')" class="mx-4 bg-gray-200 hover:bg-gray-100 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
     Cancel
   </button>
     </div>

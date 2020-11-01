@@ -1,6 +1,7 @@
 <template>
 <div class="flex">
 <div class="modal box_size ">
+   <div class="flex modal-backdrop">
     <div  class="flex modal">
         <button 
             class="mx-2"
@@ -12,15 +13,16 @@
             x
         </button>
     </div>
-  <div class=" w-4/5 text-black p-1" id="x">
+  <div class=" p-4 w-6/12 bg-red-600 text-black"s>
   <span >Are you sure you want to delete {{data.name}}?</span><br>
   <button @click=ConformDelete() class="bg-white hover:bg-red-700 text-black rounded-lg font-bold py-2 px-4  " type="submit">
     Delete
   </button>
-<button @click=cancel() class="bg-white hover:bg-teal-900 text-black font-bold rounded-lg py-2 px-4  " type="submit">
+<button @click=cancel() class="bg-white hover:bg-gray-200 text-black font-bold rounded-lg py-2 px-4  " type="submit">
     Cancel
   </button>
   </div>
+</div>
 </div>
 </div>
 </template>

@@ -1,7 +1,7 @@
   <template>
   <div class="container">
   <div class="flex modal-backdrop">
-  <div class="flex modal" style="text-align:end">
+  <div class="flex modal rounded-lg" style="text-align:end">
      <button 
             class="mx-2 text-red-500"
             type="button"
@@ -16,6 +16,9 @@
     <div class="flex box-border w-4/5 p-4">
     <div class="flex mx-32 bg-teal-900 rounded-lg" style="flex-direction: column">
     <p class="p-4 flex font-sans bg-teal-800 rounded-lg uppercase tracking-wide font-bold text-4xl text-white box_size"> Add New Product</p>
+         <div>
+           
+         </div>
           <dropdown class="flex bg-white rounded-lg" style="text-align: justify" :options="categoryList" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown> <br>
           
             <label class="flex text-white text-sm font-bold " for="name">Name</label>
@@ -37,15 +40,15 @@
             <input v-model="data.brand" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="brand" type="text" placeholder="Brand">                 
 
           <div class="my-4 rounded-lg p-2 flex items-center">
-            <button @click=Add() class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button @click=Add() class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
               Add Product
             </button>
-            <button @click=cancel() class="mx-4 bg-white hover:bg-teal-900 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button @click="$emit('cancel')"  class="mx-4 bg-gray-200 hover:bg-gray-100 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
               Cancel
             </button>
           </div>
   <p class="flex text-center text-gray-500 text-xs">
-    &copy;2020 Acme Corp. All rights reserved.
+    &copy;2020 SSHP. All rights reserved.
   </p>
     </div>
 </div>
@@ -97,10 +100,6 @@ export default {
             this.data.category_name = this.object.name
             debugger
           },
-          cancel(){
-          debugger
-          this.$emit('cancel', { data: this.data})
-      },
        
         }
     }

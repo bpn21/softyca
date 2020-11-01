@@ -2,16 +2,20 @@
 <div class="bg-teal-800">
   <div class="container bg-teal-900" >
       <div class="flex flex-wrap ">
-        <h1 class="mx-6 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-teal-700 my-5" style="min-width: 932px;min-height: 154px;">Products in Database.</h1> 
-        
-        <div class="flex py-8 px-3  my-5 mx-6 font-sans shadow-2xl w-3/12 bg-white block shadow-xl text-black rounded-lg border-double bg-teal-800 text-white example-bipin" style="" v-for="(product,id) in list" :key="`${id}-ec`">
-             <div class="flex example-bipin__icon">
+
+        <button class="" @click="toggleAddModal()">
+          <svg class=" w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 
+        </button>         
+
+        <h1 class="flex mx-5 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-teal-700 my-5 " style="min-width: 933px;min-height: 154px;">Products in Database.</h1> 
+        <div class="border flex py-8 px-3  my-5 mx-3 font-sans shadow-2xl bg-white block shadow-xl text-black rounded-lg border-double bg-teal-800 text-white column"  style="min-width: 300px;"  v-for="(product,id) in list" :key="`${id}-ec`">
+             <div class="flex column__icon text-white">
             <button @click="toggleEditModal(product)">
               <svg class="stroke-2  w-10 h-6 hover:bg-teal-900 rounded-lg"  fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
             </button>
 
             <button @click="toggleDeleteModal(product)">
-              <svg class="w-10 h-6 text-teal-100 hover:bg-red-700 rounded-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-1 12a2 2 0 01-2 2H8a2 2 0 01-2-2L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              <svg class="h-6 hover:bg-red-700 rounded-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-1 12a2 2 0 01-2 2H8a2 2 0 01-2-2L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
             </button>
           </div>
           <div class=" my-4 p-3 rounded-lg shadow-lg border bg-white capitalize text-black" id='bipin_g'>
@@ -58,27 +62,19 @@
             />
         </div>
 
-        <button class="" @click="toggleAddModal()">
-          <svg class=" w-24 h-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 
-        </button>         
-
-        <h1 class="mx-6 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-green-700 my-5" >These are the list of category .</h1> 
+        <h1 class="mx-6 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-green-700 my-5" style="min-width: 933px;min-height: 164px">These are the list of category .</h1> 
         <div  class=" py-8 px-3  my-5 mx-6 font-sans shadow-2xl w-3/12 bg-white block shadow-xl text-black rounded-lg border-double bg-green-700 text-white ">
           <button @click="toggleCategory(category)">
             list of category
           </button>
-        </div>    
-            
-        <button>
-            <svg class="w-24 h-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 
-        </button> 
-
+        </div>  
       </div>
   </div>
   <div v-if=showCategoryProduct>
                 <CategoryProduct
                 :categoryList=categoryList
                 @cproduct = CategoryProduct
+                @cancel=cancel
                 />
   </div>
   
@@ -207,6 +203,7 @@ export default {
         this.showDeleteModal= false
         this.showEditModal=false
         this.showAddModal=false
+        this.showCategoryProduct=false
       },
       
       Edit(object){
@@ -329,15 +326,14 @@ export default {
   padding-top: 15px;
 }
 
-.example-bipin{
+.column{
     display: flex;
     flex-direction: column;
 }
 
-.example-bipin__icon {
+.column__icon {
   align-self: flex-end;
   display: flex;
-  flex-direction: row-reverse;
 }
 
 #bipin_g {
