@@ -6,13 +6,14 @@ module.exports = {
       sm: '540px',
       md: '720px',
       lg: '960px',
-      xl: '1140px'
+      xl: '1280px'
     },
     container: {
       padding: {
-        default: 'rem',
+        default: '1rem',
+        xs: '2rem',
         sm: '2rem',
-        xl: '5rem',
+        xl: '4rem',
         lg: '4rem',
       }
     },

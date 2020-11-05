@@ -1,7 +1,7 @@
   <template>
-  <div class="container">
-  <div class="flex modal-backdrop">
-  <div class="flex modal rounded-lg" style="text-align:end">
+  <div class="xs:container lg:container md:container xl:container">
+  <div class="flex flex-wrap modal-backdrop">
+  <div class="flex modal rounded-lg xl:w-6/12 lg:w-6/12 md:w-4/5 xs:w-4/5 xs:p-2 xs:mx-1" style="text-align: end;max-width: fit-content;">
      <button 
             class="mx-2 text-red-500"
             type="button"
@@ -12,14 +12,12 @@
             x
         </button>
   <div class="">
-    <div class="flex p-12 bg-teal-900 rounded-lg" style="display: table-header-group">
-    <div class="flex box-border w-4/5 p-4">
-    <div class="flex mx-32 bg-teal-900 rounded-lg" style="flex-direction: column">
-    <p class="p-4 flex font-sans bg-teal-800 rounded-lg uppercase tracking-wide font-bold text-4xl text-white box_size"> Add New Product</p>
-         <div>
-           
-         </div>
-          <dropdown class="flex bg-white rounded-lg" style="text-align: justify" :options="categoryList" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown> <br>
+    <div class="flex bg-teal-900 rounded-lg " style="max-width: fit-content;">
+    <div class="flex box-border p-4 ">
+    <div class="flex mx-32 bg-teal-900 rounded-lg xs:mx-0 md:mx-12 lg:mx-20 xl:mx-64 " style="flex-direction: column;">
+    <p  style="min-width: auto;" class="flex font-sans bg-teal-800 rounded-lg uppercase tracking-wide font-bold text-4xl text-white box_size  xl:w-4/5 lg:w-4/5 md:w-4/5 "> Add New Product</p>
+         
+          <dropdown  class="flex bg-white rounded-lg" style="text-align: justify" :options="categoryList" :selected="object" v-on:updateOption="methodToRunOnSelect"></dropdown> <br>
           
             <label class="flex text-white text-sm font-bold " for="name">Name</label>
             <input v-model="data.name" class="shadow-lg  border rounded w-full py-2 px-3 text-gray-700  focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name">
@@ -93,6 +91,9 @@ export default {
     methods:{
           Add(){
             this.$emit('add',{data : this.postData})
+          },
+          cancel(){
+          this.$emit('cancel', {data : this.postData})
           },
           methodToRunOnSelect(payload) {
             this.object = payload;

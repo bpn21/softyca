@@ -1,14 +1,15 @@
 <template>
-<div class="bg-teal-800">
-  <div class="container bg-teal-900" >
-      <div class="flex flex-wrap ">
+<div class="flex screens xs:container sm:container md:container lg:container xl:container ">
+  <div class="flex  xs:bg-teal-900 sm:bg-teal-900 md:bg-teal-900 lg:bg-teal-900 xl:bg-teal-900 xs:w-screen " >
+      <div class="flex flex-wrap">
 
-        <button class="" @click="toggleAddModal()">
-          <svg class=" w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 
+        <button class="flex xs:mx-2 xs:min-w-0 xl:mx-full lg:mx-32 md:mx-40 sm:mx-64" @click="toggleAddModal()">
+          <svg class="flex w-12 h-12 text-white " fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> 
         </button>         
 
-        <h1 class="flex mx-5 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-teal-700 my-5 " style="min-width: 933px;min-height: 154px;">Products in Database.</h1> 
-        <div class="border flex py-8 px-3  my-5 mx-3 font-sans shadow-2xl bg-white block shadow-xl text-black rounded-lg border-double bg-teal-800 text-white column"  style="min-width: 300px;"  v-for="(product,id) in list" :key="`${id}-ec`">
+        <h1 style="min-height: 100px;margin-left: inherit;" class="flex  bg-teal-700 flex font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1  my-4   lg:text-black xl:text-white md:text-red-500 md:w-1/2 md:mx-64 md:min-w-0 md:w-4/5  sm:min-w-0 sm:w-4/5 sm:mx-12 xl:mx-0 sm:min-w-4 sm:mx-4 " >Products in Database.</h1> 
+        <div style="font-variant: all-small-caps;flex-flow: wrap;" class="flex xs:-mx-32 xl:mx-1 lg:mx-12 ">
+        <div  class="flex border xl:py-2 xl:px-3 lg:py-2 lg:my-4 sm:p-6 sm:my-4 md:mx-64 mx-64 xl:my-5 xl:mx-3 font-sans shadow-2xl block shadow-xl text-black rounded-lg border-double bg-teal-800 text-white column  md:min-w-20 md:h-44 my-6 md:mx-1 lg:mx-2 xs:mx-32 xs:px-2"  style="min-width: 350px;" v-for="(product,id) in list" :key="`${id}-ec`">
              <div class="flex column__icon text-white">
             <button @click="toggleEditModal(product)">
               <svg class="stroke-2  w-10 h-6 hover:bg-teal-900 rounded-lg"  fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
@@ -18,10 +19,10 @@
               <svg class="h-6 hover:bg-red-700 rounded-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-1 12a2 2 0 01-2 2H8a2 2 0 01-2-2L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
             </button>
           </div>
-          <div class=" my-4 p-3 rounded-lg shadow-lg border bg-white capitalize text-black" id='bipin_g'>
+          <div class=" my-4 p-3 rounded-lg shadow-lg border bg-white capitalize text-black">
             Detail of {{product.name}}
           </div>
-          <div class="uppercase bg-green-700 text-white-500 rounded-lg ">
+          <div class="flex uppercase bg-green-700 text-white-500 rounded-lg ">
           Category: {{product.category_name ||"not avaliable"}},<br>
           </div>
           Name:  {{product.name||"not avaliable"}},<br>
@@ -30,6 +31,7 @@
           Brand :{{product.brand||"not avaliable"}},<br>
           Id: {{product.id ||"not avaliable"}}
        
+        </div>
         </div>
 
         <div v-if="showDeleteModal">
@@ -62,8 +64,8 @@
             />
         </div>
 
-        <h1 class="mx-6 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-green-700 my-5" style="min-width: 933px;min-height: 164px">These are the list of category .</h1> 
-        <div  class=" py-8 px-3  my-5 mx-6 font-sans shadow-2xl w-3/12 bg-white block shadow-xl text-black rounded-lg border-double bg-green-700 text-white ">
+        <h1 style="min-width: 933px;min-height: 164px" class="flex mx-6 font-sans block shadow-lg text-5xl font-extrabold text-white rounded-lg border p-1 bg-green-700 my-5 xl:w-min-full lg:w-min-full" >These are the list of category .</h1> 
+        <div  class="flex py-8 px-3  my-5 mx-6 font-sans shadow-2xl w-3/12 block shadow-xl text-black rounded-lg border-double bg-green-700 text-white ">
           <button @click="toggleCategory(category)">
             list of category
           </button>
